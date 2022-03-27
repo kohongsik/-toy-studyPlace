@@ -6,6 +6,8 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.security.auth.Subject;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="problem")
@@ -29,5 +31,17 @@ public class ProblemEntity extends CommonEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="subject_id")
-    private SubjectEntity subject;
+    private SubjectEntity subjectEntity;
+
+    @Builder.Default
+    @OneToMany(mappedBy = "problemEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ProblemSolvingHistoryEntity> problemSolvingHistoryEntityList = new ArrayList<>();
+
+    public void addProblemSolvingHistory (ProblemSolvingHistoryEntity problemSolvingHistoryEntity) {
+        problemSolvingHistoryEntity.setProblemEntity(this);
+        if (this.problemSolvingHistoryEntityList == null) {
+            this.problemSolvingHistoryEntityList = new ArrayList<>();
+        }
+        this.problemSolvingHistoryEntityList.add(problemSolvingHistoryEntity);
+    }
 }

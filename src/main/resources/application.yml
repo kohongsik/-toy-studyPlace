@@ -22,3 +22,8 @@ server:
       charset: UTF-8
       enabled: true
       force: true
+logging:
+  level:
+    root: debug
+    org.hibernate.SQL: debug # logger 에서 출력
+    org.hibernate.type: trace # parameter(? 로 표시) 부분을 확인 할 수 있음

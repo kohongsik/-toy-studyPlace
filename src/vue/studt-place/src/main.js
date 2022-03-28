@@ -8,6 +8,8 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import jQuery from 'jquery';
 import bootstrap from 'bootstrap'
 import CommonButton from "./components/common/CommonButton";
+import FrameHeader from "./components/frame/FrameHeader";
+
 axios.defaults.baseURL = 'http://localhost:8080/'
 axios.defaults.headers.get['Content-Type'] = 'application/json;charset=utf-8'
 axios.defaults.headers.get['Access-Control-Allow-Origin'] = '*'
@@ -16,6 +18,7 @@ app.use(router)
 app.use(jQuery)
 app.use(bootstrap)
 app.use(CommonButton)
+app.use(FrameHeader)
 app.mixin(Common)
 app.mount("#app")
 

@@ -15,8 +15,14 @@ export default {
   props: {
     msg: String
   },
-  mounted () {
+  async mounted () {
     // this.alert('asd')
+    const res = await this.axios({
+      method: 'get',
+      url: '/api/v1/sample/'
+    })
+    const data = res.data || ''
+    this.alert(data)
   }
 }
 </script>
